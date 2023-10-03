@@ -1,0 +1,17 @@
+ # Stanford
+
+datasets:
+  general_img_caption_csv: # name of the dataset builder
+    data_type: images # [images|videos|features]
+
+    build_info:
+      # Be careful not to append minus sign (-) before split to avoid itemizing
+      annotations:
+        train:
+          storage: /home/ubuntu/projects/data/wild/data_csv/filtered/OSM_20230805_train_top20pct_subsample_250K.csv
+          img_path_key: filepath
+          caption_key: title
+        val:
+          storage: /home/ubuntu/projects/data/wild/data_csv/filtered/OSM_20230805_val_5K.csv
+          img_path_key: filepath
+          caption_key: title

@@ -225,6 +225,9 @@ def all_gather_with_grad(tensors):
     Performs all_gather operation on the provided tensors.
     Graph remains connected for backward grad computation.
     """
+    # if not using distributed training
+    if not is_dist_avail_and_initialized():
+        return tensors
     # Queue the gathered tensors
     world_size = torch.distributed.get_world_size()
     # There is no need for reduction in the single-proc case

@@ -6,6 +6,9 @@
 """
 
 from lavis.datasets.builders.base_dataset_builder import load_dataset_config
+from lavis.datasets.builders.customized_builder import (
+    GeneralImgCapCsvBuilder,
+)
 from lavis.datasets.builders.caption_builder import (
     COCOCapBuilder,
     MSRVTTCapBuilder,
@@ -42,6 +45,7 @@ from lavis.datasets.builders.text_to_image_generation_builder import BlipDiffusi
 from lavis.common.registry import registry
 
 __all__ = [
+    "GeneralImgCapCsvBuilder",
     "BlipDiffusionFinetuneBuilder",
     "COCOCapBuilder",
     "COCORetrievalBuilder",

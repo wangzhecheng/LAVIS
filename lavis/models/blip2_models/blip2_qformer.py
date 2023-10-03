@@ -13,7 +13,9 @@ from torch.cuda.amp import autocast as autocast
 from torch.nn import functional as F
 
 from lavis.common.registry import registry
+from lavis.common.dist_utils import get_rank
 from lavis.models.base_model import all_gather_with_grad, concat_all_gather
+
 from lavis.models.blip2_models.blip2 import (
     Blip2Base,
     compute_sim_matrix,
@@ -150,7 +152,8 @@ class Blip2Qformer(Blip2Base):
         sim_t2i, _ = sim_t2q.max(-1)
         sim_t2i = sim_t2i / self.temp  # [batch_size, batch_size*num_gpu]
 
-        rank = dist.get_rank()
+#         rank = dist.get_rank()
+        rank = get_rank()
         bs = image.size(0)
         targets = torch.linspace(rank * bs, rank * bs + bs - 1, bs, dtype=int).to(
             image.device
